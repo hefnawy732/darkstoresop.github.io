@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Support and Dark Store SOP</title>
+    <style>
+        body {
+            background-color: #dedede;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .ag-format-container {
+            width: 1142px;
+            margin: 0 auto;
+        }
+        .ag-courses_box {
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            padding: 50px 0;
+        }
+        .ag-courses_item {
+            flex-basis: calc(33.33333% - 30px);
+            margin: 0 15px 30px;
+            overflow: hidden;
+            border-radius: 28px;
+        }
+        .ag-courses-item_link {
+            display: block;
+            padding: 30px 20px;
+            background-color: #002401;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none; /* Add this line to remove the underline */
+
+        }
+        .ag-courses-item_link:hover,
+        .ag-courses-item_link:hover .ag-courses-item_date {
+            text-decoration: none;
+            color: #FFF;
+        }
+        .ag-courses-item_link:hover .ag-courses-item_bg {
+            transform: scale(10);
+        }
+        .ag-courses-item_title {
+            min-height: 87px;
+            margin: 0 0 25px;
+            overflow: hidden;
+            font-weight: bold;
+            font-size: 30px;
+            color: #FFF;
+            z-index: 2;
+            position: relative;
+        }
+        .ag-courses-item_date-box {
+            font-size: 18px;
+            color: #FFF;
+            z-index: 2;
+            position: relative;
+        }
+        .ag-courses-item_date {
+            font-weight: bold;
+            color: #18b83b;
+            transition: color .5s ease;
+        }
+        .ag-courses-item_bg {
+            height: 128px;
+            width: 128px;
+            background-color: #09a32a;
+            z-index: 1;
+            position: absolute;
+            top: -75px;
+            right: -75px;
+            border-radius: 50%;
+            transition: all .5s ease;
+        }
+        .ag-courses_item:nth-child(2n) .ag-courses-item_bg {
+            background-color: #09a32a;
+        }
+        .ag-courses_item:nth-child(3n) .ag-courses-item_bg {
+            background-color: #09a32a;
+        }
+        .ag-courses_item:nth-child(4n) .ag-courses-item_bg {
+            background-color: #09a32a;
+        }
+        .ag-courses_item:nth-child(5n) .ag-courses-item_bg {
+            background-color: #09a32a;
+        }
+        .ag-courses_item:nth-child(6n) .ag-courses-item_bg {
+            background-color: #09a32a;
+        }
+        @media only screen and (max-width: 979px) {
+            .ag-courses_item {
+                flex-basis: calc(50% - 30px);
+            }
+            .ag-courses-item_title {
+                font-size: 24px;
+            }
+        }
+        @media only screen and (max-width: 767px) {
+            .ag-format-container {
+                width: 96%;
+            }
+        }
+        @media only screen and (max-width: 639px) {
+            .ag-courses_item {
+                flex-basis: 100%;
+            }
+            .ag-courses-item_title {
+                min-height: 72px;
+                line-height: 1;
+                font-size: 24px;
+            }
+            .ag-courses-item_link {
+                padding: 22px 40px;
+            }
+            .ag-courses-item_date-box {
+                font-size: 16px;
+            }
+        }
+        img.img-fluid {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    margin: 10px; /* Optional: Adds some space from the edges */
+    max-width: 220px; /* Optional: Sets a maximum width to ensure it doesn't occupy too much space */
+
+
+}
+
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed positioning */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.7); /* Black with opacity */
+    overflow: hidden; /* Prevent scrolling of the modal background */
+}
+
+.modal-content {
+    background-color: #ffffff; /* Dark background for the modal */
+    margin: auto; /* Center the modal */
+    padding: 20px;
+    width: 80%; /* Width of the modal */
+    max-width: 600px; /* Maximum width for larger screens */
+    border-radius: 10px;
+    color: rgb(0, 0, 0); /* Set text color to black */
+    position: relative; /* Ensure position context for centering */
+    top: 50%; /* Move down 50% of the viewport height */
+    transform: translateY(-50%); /* Adjust to center vertically */
+    max-height: 80vh; /* Maximum height of the modal */
+    overflow-y: auto; /* Enable vertical scrolling for the content */
+    max-height: 80vh; /* Maximum height of the modal */
+    overflow-y: auto; /* Enable vertical scrolling for the content */
+}
+
+/* Custom scrollbar styles */
+.modal-content::-webkit-scrollbar {
+    width: 6px; /* Width of the scrollbar */
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Track color */
+    border-radius: 10px; /* Rounded corners for the track */
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: #002401; /* Color of the scrollbar handle */
+    border-radius: 10px; /* Rounded corners for the scrollbar handle */
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: #018b03; /* Darker shade on hover */
+}
+
+.close-button {
+    color: #aaa; /* Color for close button */
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: rgb(109, 106, 106); /* Change close button color on hover */
+    text-decoration: none;
+}
+body.no-scroll {
+    overflow: hidden; /* Prevent scrolling */
+}
+    </style>
+</head>
+<body>
+    <img src="test/Icone.png" class="img-fluid" alt="...">
+
+    <div class="ag-format-container">
+        <div class="ag-courses_box">
+            <div class="ag-courses_item">
+                <a href="#" class="ag-courses-item_link">
+                    <div class="ag-courses-item_bg"></div>
+                    <div class="ag-courses-item_title"> Purpose </div>
+                    <div class="ag-courses-item_date-box">
+                        Updated at: <span class="ag-courses-item_date">September  2024</span>
+                    </div>
+                </a>
+            </div>
+            <div class="ag-courses_item">
+                <a href="#" class="ag-courses-item_link">
+                    <div class="ag-courses-item_bg"></div>
+                    <div class="ag-courses-item_title">Scope</div>
+                    <div class="ag-courses-item_date-box">
+                        Updated at: <span class="ag-courses-item_date">September  2024</span>
+                    </div>
+                </a>
+            </div>
+            <div class="ag-courses_item">
+                <a href="#" class="ag-courses-item_link">
+                    <div class="ag-courses-item_bg"></div>
+                    <div class="ag-courses-item_title">Communication Channel</div>
+                    <div class="ag-courses-item_date-box">
+                        Updated at: <span class="ag-courses-item_date">September  2024</span>
+                    </div>
+                </a>
+            </div>
+            <div class="ag-courses_item">
+                <a href="#" class="ag-courses-item_link">
+                    <div class="ag-courses-item_bg"></div>
+                    <div class="ag-courses-item_title">Procedure for Handling Escalations</div>
+                    <div class="ag-courses-item_date-box">
+                        Updated at: <span class="ag-courses-item_date">September  2024</span>
+                    </div>
+                </a>
+            </div>
+            <div class="ag-courses_item">
+                <a href="#" class="ag-courses-item_link">
+                    <div class="ag-courses-item_bg"></div>
+                    <div class="ag-courses-item_title">Escalation Types and SLAs</div>
+                    <div class="ag-courses-item_date-box">
+                        Updated at: <span class="ag-courses-item_date">September  2024</span>
+                    </div>
+                </a>
+            </div>
+            <div class="ag-courses_item">
+                <a href="#" class="ag-courses-item_link">
+                    <div class="ag-courses-item_bg"></div>
+                    <div class="ag-courses-item_title">Important Notes</div>
+                    <div class="ag-courses-item_date-box">
+                        Updated at: <span class="ag-courses-item_date">September  2024</span>
+                    </div>
+                </a>
+            </div>
+            <div class="ag-courses_item">
+                <a href="#" class="ag-courses-item_link">
+                    <div class="ag-courses-item_bg"></div>
+                    <div class="ag-courses-item_title">Version Control</div>
+                    <div class="ag-courses-item_date-box">
+                        Updated at: <span class="ag-courses-item_date">September  2024</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div id="contentText"></div>
+        </div>
+    </div>
+    <script>
+
+document.addEventListener("DOMContentLoaded", function() {
+    const modal = document.getElementById("modal");
+    const closeButton = document.querySelector(".close-button");
+    const contentText = document.getElementById("contentText");
+
+    const cardContent = {
+        "Purpose":    ` <h1>Standard Operating Procedure (SOP)</h1>
+    <h2>Collaboration Between Customer Support and Dark Store Teams</h2>
+    <p>This SOP outlines the procedures for collaboration between the Customer Support (CS) team and the Dark Store team to ensure efficient handling of customer complaints regarding:</p>
+    <ul>
+        <li>Missing items</li>
+        <li>Wrong items</li>
+        <li>Damaged items</li>
+        <li>Near-expiry items</li>
+    </ul>`,
+        "Scope": ` <h1>Scope</h1>
+    <p>This SOP applies to all customer complaints related to orders fulfilled by the Dark Store team (Smiles Market, Smiles Market Abu Dhabi) through the elGrocer platform.</p>
+`,
+        "Communication Channel":`    <h1>Communication Details</h1>
+    <h2>Contact Information</h2>
+    <ul>
+        <li><strong>Slack Channel:</strong> smiles-market-escalations</li>
+        <li><strong>Head of Dark Store Team:</strong> Sathish Kumar, Head of Dark Stores & Logistics</li>
+    </ul>`,
+        "Procedure for Handling Escalations": `
+    <h1>Procedure for Handling Escalations</h1>
+
+    <h2>Step 1: Gathering Information from the Customer</h2>
+    
+    <h3>For Missing Items:</h3>
+    <ul>
+        <li>Ask the customer how many bags they received.</li>
+        <li>Request a photo of the printed paper bill attached to the bags.</li>
+        <li>Request photos of the bag labels.</li>
+        <li>Ask for the name of the missing item.</li>
+    </ul>
+    <p>This will help identify whether it was a driver's or picker's mistake. For example:</p>
+    <ul>
+        <li>If the printed bill says the customer should receive 3 bags but they received only 2, it’s likely a driver's mistake.</li>
+        <li>Escalate the issue to Slack Channel: <strong>smiles-market-escalations</strong>, mentioning fleet supervisors Dhave, Ram, and Zeeshan Ali. Ask them to check with the driver and arrange delivery of the missing items.</li>
+    </ul>
+
+    <h3>For Wrong Items:</h3>
+    <ul>
+        <li>Request the name of the wrong item.</li>
+        <li>Ask for a photo of the item's barcode.</li>
+        <li>Request a photo of the printed bill and the label on the bags received.</li>
+    </ul>
+    <p>Check if the barcode matches the item ordered on the dashboard. If the barcode is incorrect, it indicates a picker error. In case of description errors, inform the Catalogue team to correct it.</p>
+
+    <h3>For Damaged Items:</h3>
+    <ul>
+        <li>Ask the customer to provide a clear photo of the damaged item.</li>
+        <li>Verify the damage with the store to determine if it occurred during handling or after delivery. If replacements are available, arrange a replacement; otherwise, arrange a return and refund.</li>
+    </ul>
+
+    <h3>For Near Expiry Items:</h3>
+    <ul>
+        <li>Request a photo of the item's expiry date.</li>
+    </ul>
+    <p><strong>Agreed Policy:</strong></p>
+    <ul>
+        <li>Items valid for more than two weeks are not considered near expiry.</li>
+        <li>Fresh items may require special handling depending on the specific case.</li>
+    </ul>
+
+    <h2>Step 2: Raising Requests for Return, Replacement, or Missing Items</h2>
+    <ul>
+        <li>Use the Reverse Logistics request in the Sendbird widget.</li>
+        <li>Follow up with Kissflow for store responses and take the necessary action.</li>
+    </ul>
+
+    <h2>Step 3: SLA Compliance</h2>
+    <p>The Dark Store team has specific Service Level Agreements (SLAs) for each case type. Adhere to these SLAs to ensure timely responses and resolutions.</p>
+`,
+        "Escalation Types and SLAs": ` <h1>Dark Store Escalation Types and SLAs</h1>
+
+    <h2>Escalation Types</h2>
+
+    <h3>Missing Items:</h3>
+    <ul>
+        <li><strong>Gather:</strong> Order ID, Store Name, Order Label image, Missing Item details, Wrong Item received image.</li>
+        <li><strong>SLA:</strong> 180 minutes.</li>
+    </ul>
+
+    <h3>Damaged Items:</h3>
+    <ul>
+        <li><strong>Gather:</strong> Order ID, Store Name, Order Label image, Damaged Item image.</li>
+        <li><strong>SLA:</strong> 60 minutes.</li>
+    </ul>
+
+    <h3>Wrong Items:</h3>
+    <ul>
+        <li><strong>Gather:</strong> Order ID, Store Name, Order Label image, Wrong Item received image, Barcode Image.</li>
+        <li><strong>SLA:</strong> 180 minutes.</li>
+    </ul>
+
+    <h3>Near-Expiry Items:</h3>
+    <ul>
+        <li><strong>Gather:</strong> Order ID, Store Name, Order Label image, Expiry date product image.</li>
+        <li><strong>SLA:</strong> 60 minutes.</li>
+    </ul>
+
+    <h3>Fruits & Vegetables (F&V) Quality Issues:</h3>
+    <ul>
+        <li><strong>Gather:</strong> Order ID, Store Name, Image of rotten/fungus/crushed/bad quality product.</li>
+        <li><strong>SLA:</strong> 60 minutes.</li>
+    </ul>
+
+    <h3>F&V Origin Issues:</h3>
+    <ul>
+        <li><strong>Gather:</strong> Order ID, Store Name, Image of Item barcode/labels/stickers attached to the item.</li>
+        <li><strong>SLA:</strong> 180 minutes.</li>
+    </ul>
+
+    <h3>Temperature Issues (for fresh items):</h3>
+    <ul>
+        <li><strong>Gather:</strong> Order ID, Store Name, Item pictures showing melting, oozing, color change, etc.</li>
+        <li><strong>SLA:</strong> 60 minutes.</li>
+    </ul>
+
+    <h3>Late Delivery:</h3>
+    <ul>
+        <li><strong>Gather:</strong> Order ID, Store Name.</li>
+        <li><strong>SLA:</strong> Immediate.</li>
+    </ul>
+
+    <h3>Customer Location/Phone Number Update:</h3>
+    <ul>
+        <li><strong>Gather:</strong> Order ID, Store Name, complete address, and new contact details.</li>
+        <li><strong>SLA:</strong> Immediate.</li>
+    </ul>
+
+    <h3>Urgent Delivery Requests:</h3>
+    <ul>
+        <li><strong>Gather:</strong> Order ID, Store Name, and request details.</li>
+        <li><strong>SLA:</strong> Immediate.</li>
+    </ul>
+
+    <h3>Driver Issues:</h3>
+    <ul>
+        <li><strong>Gather:</strong> Order ID, Store Name, and details of the customer issue with the driver.</li>
+        <li><strong>SLA:</strong> Immediate.</li>
+    </ul>`,
+        "Important Notes": `    <h1>Important Notes</h1>
+    <ul>
+        <li>Ensure that no escalation is duplicated or raised prematurely.</li>
+        <li>Before raising an escalation, ensure all required information is collected to avoid delays.</li>
+        <li>If an issue exceeds the agreed SLA, take the appropriate action as per the specific case.</li>
+    </ul>`,
+        "Version Control":`    <h1>Version Control</h1>
+    <ul>
+        <li><strong>Version:</strong> 1.1</li>
+        <li><strong>Last Updated:</strong> September 2024</li>
+        <li><strong>Next Review:</strong> January 2025</li>
+        <li><strong>Reviewed by:</strong> Customer Support Manager</li>
+    </ul>
+`,
+    };
+
+    document.querySelectorAll('.ag-courses_item').forEach(item => {
+        item.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default anchor click behavior
+            const title = this.querySelector('.ag-courses-item_title').textContent.trim();
+            contentText.innerHTML = cardContent[title]; // Set the content HTML
+            modal.style.display = "block"; // Show the modal
+            document.body.classList.add('no-scroll'); // Add class to prevent body scrolling
+
+        });
+    });
+
+    closeButton.addEventListener('click', function() {
+        modal.style.display = "none"; // Hide the modal
+        document.body.classList.remove('no-scroll'); // Remove class to allow scrolling again
+
+    });
+
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none"; // Hide the modal if outside of it is clicked
+            document.body.classList.remove('no-scroll'); // Remove class to allow scrolling again
+
+        }
+    });
+});
+    </script>
+</body>
+</html>
